@@ -6,6 +6,7 @@
 package com.umg.fast.parking.client.formularios;
 
 import com.umg.fast.parking.client.service.ClientService;
+import javax.swing.JOptionPane;
 import org.json.simple.JSONObject;
 
 /**
@@ -36,7 +37,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtextUsuario = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jbuttonAceptar = new javax.swing.JButton();
         jtextPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,10 +46,12 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setText("Password");
 
-        jButton1.setText("aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jtextUsuario.setToolTipText("");
+
+        jbuttonAceptar.setText("aceptar");
+        jbuttonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbuttonAceptarActionPerformed(evt);
             }
         });
 
@@ -59,7 +62,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(jbuttonAceptar)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -83,22 +86,25 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jtextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jButton1)
+                .addComponent(jbuttonAceptar)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jbuttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAceptarActionPerformed
         String usuario = jtextUsuario.getText();
         String password = jtextPassword.getText();
+        
         JSONObject request = new JSONObject();
         request.put("usuario", usuario);
         request.put("password", password);
+        
         JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/login", request);
+        JOptionPane.showMessageDialog(this, response.get("mensaje"));
         System.out.println("response " + response);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jbuttonAceptarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -136,9 +142,9 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbuttonAceptar;
     private javax.swing.JPasswordField jtextPassword;
     private javax.swing.JTextField jtextUsuario;
     // End of variables declaration//GEN-END:variables
