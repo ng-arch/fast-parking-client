@@ -118,6 +118,11 @@ public class GenerarTicket extends javax.swing.JFrame {
         jRadioButton2.setText("Motocicleta");
 
         jToggleButton1.setText("Registrar");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Placa");
 
@@ -880,6 +885,10 @@ public class GenerarTicket extends javax.swing.JFrame {
     private void jTextField48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField48ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField48ActionPerformed
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments

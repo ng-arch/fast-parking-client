@@ -103,6 +103,12 @@ public class Login extends javax.swing.JFrame {
         
         JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/login", request);
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
+        String success=String.valueOf(response.get("success"));
+        if("true".equals(success)){
+            Menu generarTicket=new Menu();
+            generarTicket.setLocationRelativeTo(this);
+            generarTicket.setVisible(true);
+        }
         System.out.println("response " + response);
     }//GEN-LAST:event_jbuttonAceptarActionPerformed
 
