@@ -36,8 +36,8 @@ ClientService clientService = new ClientService();
         jLabel4 = new javax.swing.JLabel();
         jtextNombre = new javax.swing.JTextField();
         jtextUsuario = new javax.swing.JTextField();
-        jtextPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jtextPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,12 +59,6 @@ ClientService clientService = new ClientService();
         jtextUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtextUsuarioActionPerformed(evt);
-            }
-        });
-
-        jtextPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtextPasswordActionPerformed(evt);
             }
         });
 
@@ -95,9 +89,9 @@ ClientService clientService = new ClientService();
                                     .addComponent(jLabel4))
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtextNombre)
+                                    .addComponent(jtextNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                                     .addComponent(jtextUsuario)
-                                    .addComponent(jtextPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))))))
+                                    .addComponent(jtextPassword))))))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,9 +111,9 @@ ClientService clientService = new ClientService();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jtextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41)
+                .addGap(38, 38, 38)
                 .addComponent(jButton1)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         pack();
@@ -128,10 +122,6 @@ ClientService clientService = new ClientService();
     private void jtextNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtextNombreActionPerformed
-
-    private void jtextPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtextPasswordActionPerformed
 
     private void jtextUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextUsuarioActionPerformed
         // TODO add your handling code here:
@@ -201,7 +191,7 @@ ClientService clientService = new ClientService();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField jtextNombre;
-    private javax.swing.JTextField jtextPassword;
+    private javax.swing.JPasswordField jtextPassword;
     private javax.swing.JTextField jtextUsuario;
     // End of variables declaration//GEN-END:variables
 }
