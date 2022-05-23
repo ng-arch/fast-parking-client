@@ -134,7 +134,7 @@ ClientService clientService = new ClientService();
         String password = jtextPassword.getText();
         
         JSONObject request = new JSONObject();
-        request.put("nombre", usuario);
+        request.put("nombre", nombre);
         request.put("usuario", usuario);
         request.put("password", password);
         
