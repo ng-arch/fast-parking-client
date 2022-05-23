@@ -4,11 +4,16 @@
  */
 package com.umg.fast.parking.client.formularios;
 
+import com.umg.fast.parking.client.service.ClientService;
+import org.json.simple.JSONObject;
+
 /**
  *
  * @author Kevin Barrientos
  */
 public class GenerarTicket extends javax.swing.JFrame {
+
+ ClientService clientService = new ClientService();
 
     /**
      * Creates new form GenerarTicket
@@ -33,13 +38,13 @@ public class GenerarTicket extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jText1 = new javax.swing.JTextField();
-        jText2 = new javax.swing.JTextField();
-        jText3 = new javax.swing.JTextField();
-        jText4 = new javax.swing.JTextField();
-        jText5 = new javax.swing.JTextField();
-        jText6 = new javax.swing.JTextField();
-        jbtn1 = new javax.swing.JButton();
+        horaEntrada = new javax.swing.JTextField();
+        usuario = new javax.swing.JTextField();
+        monto = new javax.swing.JTextField();
+        horaSalida = new javax.swing.JTextField();
+        tipoPago = new javax.swing.JTextField();
+        placa = new javax.swing.JTextField();
+        generarTicket = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,19 +62,48 @@ public class GenerarTicket extends javax.swing.JFrame {
 
         jLabel6.setText("Placa");
 
-        jText1.addActionListener(new java.awt.event.ActionListener() {
+        horaEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jText1ActionPerformed(evt);
+                horaEntradaActionPerformed(evt);
             }
         });
 
-        jText4.addActionListener(new java.awt.event.ActionListener() {
+        usuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jText4ActionPerformed(evt);
+                usuarioActionPerformed(evt);
             }
         });
 
-        jbtn1.setText("Generar ticket");
+        monto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                montoActionPerformed(evt);
+            }
+        });
+
+        horaSalida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                horaSalidaActionPerformed(evt);
+            }
+        });
+
+        tipoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipoPagoActionPerformed(evt);
+            }
+        });
+
+        placa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                placaActionPerformed(evt);
+            }
+        });
+
+        generarTicket.setText("Generar ticket");
+        generarTicket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generarTicketActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,8 +120,8 @@ public class GenerarTicket extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addGap(57, 57, 57)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jText6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText5, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(placa, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -96,13 +130,13 @@ public class GenerarTicket extends javax.swing.JFrame {
                                     .addComponent(jLabel2))
                                 .addGap(40, 40, 40)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jText4, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jText2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(horaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(horaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addComponent(jbtn1)))
+                        .addComponent(generarTicket)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -111,18 +145,18 @@ public class GenerarTicket extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(horaEntrada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jText4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(horaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jText3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -131,13 +165,13 @@ public class GenerarTicket extends javax.swing.JFrame {
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jText5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tipoPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(jText6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(placa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jbtn1)
+                .addComponent(generarTicket)
                 .addGap(5, 5, 5))
         );
 
@@ -161,13 +195,47 @@ public class GenerarTicket extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText1ActionPerformed
+    private void horaEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaEntradaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jText1ActionPerformed
+    }//GEN-LAST:event_horaEntradaActionPerformed
 
-    private void jText4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jText4ActionPerformed
+    private void horaSalidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horaSalidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jText4ActionPerformed
+    }//GEN-LAST:event_horaSalidaActionPerformed
+
+    private void montoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_montoActionPerformed
+
+    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usuarioActionPerformed
+
+    private void tipoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoPagoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipoPagoActionPerformed
+
+    private void placaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_placaActionPerformed
+
+    private void generarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTicketActionPerformed
+         String horaentrada = horaEntrada.getText();
+        String horasalida = horaSalida.getText();
+        String montostr = monto.getText();
+        String usuariostr = usuario.getText();
+        String tipopago = tipoPago.getText();
+        String placastr = placa.getText();
+
+        JSONObject request = new JSONObject();
+        request.put("hora_entrada", horaentrada);
+        request.put("hora_salida", horasalida);
+        request.put("monto", montostr);
+        request.put("usuario_id", usuariostr);      
+        request.put("tipo_pago_id", tipopago);
+        request.put("vehiculo_placa", placastr);
+JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/registrotkt", request);
+    }//GEN-LAST:event_generarTicketActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,6 +273,9 @@ public class GenerarTicket extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton generarTicket;
+    public javax.swing.JTextField horaEntrada;
+    public javax.swing.JTextField horaSalida;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -212,12 +283,9 @@ public class GenerarTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    public javax.swing.JTextField jText1;
-    public javax.swing.JTextField jText2;
-    public javax.swing.JTextField jText3;
-    public javax.swing.JTextField jText4;
-    public javax.swing.JTextField jText5;
-    public javax.swing.JTextField jText6;
-    public javax.swing.JButton jbtn1;
+    public javax.swing.JTextField monto;
+    public javax.swing.JTextField placa;
+    public javax.swing.JTextField tipoPago;
+    public javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
