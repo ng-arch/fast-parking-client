@@ -142,9 +142,9 @@ ClientService clientService = new ClientService();
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
         String success=String.valueOf(response.get("success"));
         if("true".equals(success)){
-            Menu generarTicket=new Menu();
-            generarTicket.setLocationRelativeTo(this);
-            generarTicket.setVisible(true);
+            Login abrir = new Login();
+        abrir.setVisible(true);
+        this.setVisible(false);
         }
         System.out.println("response " + response);
     }//GEN-LAST:event_jButton1ActionPerformed
