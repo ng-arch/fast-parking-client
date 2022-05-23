@@ -105,11 +105,11 @@ public class Login extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
         String success=String.valueOf(response.get("success"));
         if("true".equals(success)){
-            
-            
-            Menu abrir = new Menu();
+        Menu abrir = new Menu();
         abrir.setVisible(true);
         this.setVisible(false);
+            
+
             
         }
         System.out.println("response " + response);
