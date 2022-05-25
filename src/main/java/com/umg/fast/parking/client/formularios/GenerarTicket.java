@@ -6,6 +6,7 @@ package com.umg.fast.parking.client.formularios;
 
 import com.umg.fast.parking.client.service.ClientService;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import org.json.simple.JSONObject;
 
 /**
@@ -141,6 +142,7 @@ public class GenerarTicket extends javax.swing.JFrame {
         request.put("usuario_id", 01);
         request.put("vehiculo_placa", placa);
         JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/registrotkt", request);
+        JOptionPane.showMessageDialog(this, response.get("mensaje"));
         
     }//GEN-LAST:event_generarTicketActionPerformed
 
