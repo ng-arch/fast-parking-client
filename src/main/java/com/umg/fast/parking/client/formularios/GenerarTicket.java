@@ -16,12 +16,15 @@ import org.json.simple.JSONObject;
 public class GenerarTicket extends javax.swing.JFrame {
 
     ClientService clientService = new ClientService();
+    
 
     /**
      * Creates new form GenerarTicket
      */
     public GenerarTicket() {
         initComponents();
+        jtxUsuario.setText(Tools.getUsuario());
+        jtxUsuario.setEnabled(false);
     }
 
     /**
@@ -36,7 +39,7 @@ public class GenerarTicket extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        usuario = new javax.swing.JTextField();
+        jtxUsuario = new javax.swing.JTextField();
         jtextPlaca = new javax.swing.JTextField();
         generarTicket = new javax.swing.JButton();
 
@@ -48,9 +51,9 @@ public class GenerarTicket extends javax.swing.JFrame {
 
         jLabel6.setText("Placa");
 
-        usuario.addActionListener(new java.awt.event.ActionListener() {
+        jtxUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usuarioActionPerformed(evt);
+                jtxUsuarioActionPerformed(evt);
             }
         });
 
@@ -81,7 +84,7 @@ public class GenerarTicket extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(usuario, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(jtxUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(jtextPlaca)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(generarTicket)
@@ -94,7 +97,7 @@ public class GenerarTicket extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtextPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,18 +118,18 @@ public class GenerarTicket extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioActionPerformed
+    private void jtxUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxUsuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_usuarioActionPerformed
+    }//GEN-LAST:event_jtxUsuarioActionPerformed
 
     private void jtextPlacaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtextPlacaActionPerformed
         // TODO add your handling code here:
@@ -134,13 +137,14 @@ public class GenerarTicket extends javax.swing.JFrame {
 
     private void generarTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generarTicketActionPerformed
 
-        String usuariostr = usuario.getText();
+        String usuariostr = jtxUsuario.getText();
         String placa = jtextPlaca.getText();
 
         JSONObject request = new JSONObject();
-        request.put("hora_entrada", new Date());
-        request.put("usuario_id", 01);
+        request.put("hora_entrada", new Date()+"");
+        request.put("usuario_id", 1);
         request.put("vehiculo_placa", placa);
+        System.out.println("request registrat ticket "+request);
         JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/registrotkt", request);
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
         
@@ -187,6 +191,6 @@ public class GenerarTicket extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     public javax.swing.JTextField jtextPlaca;
-    public javax.swing.JTextField usuario;
+    public javax.swing.JTextField jtxUsuario;
     // End of variables declaration//GEN-END:variables
 }

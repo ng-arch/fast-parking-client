@@ -19,6 +19,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     ClientService clientService = new ClientService();
+    
 
     public Login() {
         initComponents();
@@ -96,6 +97,7 @@ public class Login extends javax.swing.JFrame {
     private void jbuttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAceptarActionPerformed
         String usuario = jtextUsuario.getText();
         String password = jtextPassword.getText();
+        Tools.setUsuario(usuario);
         
         JSONObject request = new JSONObject();
         request.put("usuario", usuario);
