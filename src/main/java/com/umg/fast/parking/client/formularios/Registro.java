@@ -39,8 +39,6 @@ ClientService clientService = new ClientService();
         jButton1 = new javax.swing.JButton();
         jtextPassword = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("REGISTRO DE USUARIOS");
 
