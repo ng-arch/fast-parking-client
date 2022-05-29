@@ -156,7 +156,7 @@ public class GenerarTicket extends javax.swing.JFrame {
         request.put("usuario_id", 1);
         request.put("vehiculo_placa", placa);
         System.out.println("request registrat ticket "+request);
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/registrotkt", request);
+        JSONObject response = clientService.postRequest("http://34.226.121.166:5050/parking/controller/registrotkt", request);
         JOptionPane.showMessageDialog(this, response.get("message"));
         
     }//GEN-LAST:event_generarTicketActionPerformed

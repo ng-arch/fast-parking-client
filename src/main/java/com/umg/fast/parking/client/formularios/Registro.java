@@ -158,7 +158,7 @@ ClientService clientService = new ClientService();
         request.put("usuario", usuario);
         request.put("password", password);
         
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/register", request);
+        JSONObject response = clientService.postRequest("http://34.226.121.166:5050/parking/controller/register", request);
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
         String success=String.valueOf(response.get("success"));
         if("true".equals(success)){

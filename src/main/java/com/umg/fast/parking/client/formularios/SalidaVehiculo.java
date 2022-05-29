@@ -217,7 +217,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         request.put("hora_salida", hsalida);
         request.put("monto", monto);
 
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/pago", request);
+        JSONObject response = clientService.postRequest("http://34.226.121.166:5050/parking/controller/pago", request);
         JOptionPane.showMessageDialog(this, response.get("message"));
     
         System.out.println("response " + response);
@@ -231,7 +231,7 @@ public class SalidaVehiculo extends javax.swing.JFrame {
         JSONObject request = new JSONObject();
         request.put("id", id);
 
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/busquedatkt", request);
+        JSONObject response = clientService.postRequest("http://34.226.121.166:5050/parking/controller/busquedatkt", request);
         Map ticket = (Map) response.get("ticket");
         JOptionPane.showMessageDialog(this, response.get("ticket"));
         String success = String.valueOf(response.get("success"));
