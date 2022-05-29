@@ -4,6 +4,14 @@
  */
 package com.umg.fast.parking.client.formularios;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 /**
  *
  * @author Kevin Barrientos
@@ -216,7 +224,18 @@ public class Reporteria extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://44.204.16.6:3306/ticket", "monty", "some_pass");
+            String reportPath = "C:\\Users\\bowpi\\Desktop\\coneccion\\report1.jrxml";
+            JasperReport jr = JasperCompileManager.compileReport(reportPath);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+            JasperViewer.viewReport(jp);
+            con.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
