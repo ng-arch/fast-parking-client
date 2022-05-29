@@ -168,6 +168,7 @@ public class Login extends javax.swing.JFrame {
         abrir.setLocationRelativeTo(this);
         abrir.setVisible(true);
         this.setVisible(false);
+        Tools.usuario = usuario;
             
 
             

@@ -144,9 +144,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         // TODO add your handling code here:
-        SalidaVehiculo salidaVehiculo=new SalidaVehiculo();
-        salidaVehiculo.setVisible(true);
-        salidaVehiculo.setLocationRelativeTo(this);
+        Reporteria reportes=new Reporteria();
+        reportes.setVisible(true);
+        reportes.setLocationRelativeTo(this);
         
     }//GEN-LAST:event_ReportesActionPerformed
 
