@@ -166,6 +166,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void CsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CsesionActionPerformed
         // TODO add your handling code here:
+        Login abrir = new Login();
+        abrir.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_CsesionActionPerformed
 
     /**
