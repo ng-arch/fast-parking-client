@@ -16,6 +16,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -137,28 +138,30 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         SalidaVehiculo abrir = new SalidaVehiculo();
         abrir.setVisible(true);
-        this.setVisible(false);
+        
       
     }//GEN-LAST:event_SalidaActionPerformed
 
     private void ReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportesActionPerformed
         // TODO add your handling code here:
-        Prueba abrir = new Prueba();
-        abrir.setVisible(true);
-        this.setVisible(false);
+        SalidaVehiculo salidaVehiculo=new SalidaVehiculo();
+        salidaVehiculo.setVisible(true);
+        salidaVehiculo.setLocationRelativeTo(this);
+        
     }//GEN-LAST:event_ReportesActionPerformed
 
     private void GenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenerarActionPerformed
         // TODO add your handling code here:
         GenerarTicket abrir = new GenerarTicket();
         abrir.setVisible(true);
-        this.setVisible(false);
+        
     
     }//GEN-LAST:event_GenerarActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
-        System.exit(WIDTH);
+        
+        System.exit(0);
     }//GEN-LAST:event_SalirActionPerformed
 
     private void CsesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CsesionActionPerformed

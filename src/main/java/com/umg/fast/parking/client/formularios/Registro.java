@@ -140,9 +140,7 @@ ClientService clientService = new ClientService();
         JOptionPane.showMessageDialog(this, response.get("mensaje"));
         String success=String.valueOf(response.get("success"));
         if("true".equals(success)){
-            Login abrir = new Login();
-        abrir.setVisible(true);
-        this.setVisible(false);
+            this.setVisible(false);
         }
         System.out.println("response " + response);
     }//GEN-LAST:event_jButton1ActionPerformed

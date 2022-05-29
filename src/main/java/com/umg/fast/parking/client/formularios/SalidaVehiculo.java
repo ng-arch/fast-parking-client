@@ -6,6 +6,7 @@
 package com.umg.fast.parking.client.formularios;
 
 import com.umg.fast.parking.client.service.ClientService;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONObject;
 
@@ -14,7 +15,9 @@ import org.json.simple.JSONObject;
  * @author bowpi
  */
 public class SalidaVehiculo extends javax.swing.JFrame {
-ClientService clientService = new ClientService();
+
+    ClientService clientService = new ClientService();
+
     /**
      * Creates new form SalidaVehiculo
      */
@@ -45,6 +48,8 @@ ClientService clientService = new ClientService();
         btnRegistro = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jtxtPlaca = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FAST PARKING", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
@@ -97,6 +102,9 @@ ClientService clientService = new ClientService();
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("SALIDA DE VEHICULOS");
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("placa");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,16 +123,20 @@ ClientService clientService = new ClientService();
                                 .addGap(18, 18, 18))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(26, 26, 26)))
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel7))
+                                .addGap(29, 29, 29))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtextMonto)
                             .addComponent(jtextHsalida)
                             .addComponent(jtextHentrada)
                             .addComponent(jComboFpago, 0, 214, Short.MAX_VALUE)
-                            .addComponent(jtextId))
+                            .addComponent(jtextId)
+                            .addComponent(jtxtPlaca))
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscar)))
                 .addContainerGap(36, Short.MAX_VALUE))
@@ -151,11 +163,15 @@ ClientService clientService = new ClientService();
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtextMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtxtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboFpago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegistro)
                 .addContainerGap())
         );
@@ -207,39 +223,37 @@ ClientService clientService = new ClientService();
         String hentrada = jtextHentrada.getText();
         String hsalida = jtextHsalida.getText();
         String monto = jtextMonto.getText();
-        
+
         JSONObject request = new JSONObject();
         request.put("id", id);
         request.put("hora_entrada", hentrada);
         request.put("hora_salida", hsalida);
         request.put("monto", monto);
-        
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/register", request);
-        JOptionPane.showMessageDialog(this, response.get("mensaje"));
-        String success=String.valueOf(response.get("success"));
-        if("true".equals(success)){
-            Login abrir = new Login();
-        abrir.setVisible(true);
-        this.setVisible(false);
-        }
+
+        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/pago", request);
+        JOptionPane.showMessageDialog(this, response.get("message"));
+    
         System.out.println("response " + response);
-        
+
     }//GEN-LAST:event_btnRegistroActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         String id = jtextId.getText();
-               
+
         JSONObject request = new JSONObject();
         request.put("id", id);
-        
-        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/register", request);
-        JOptionPane.showMessageDialog(this, response.get("mensaje"));
-        String success=String.valueOf(response.get("success"));
-        if("true".equals(success)){
-            Login abrir = new Login();
-        abrir.setVisible(true);
-        this.setVisible(false);
+
+        JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/busquedatkt", request);
+        Map ticket = (Map) response.get("ticket");
+        JOptionPane.showMessageDialog(this, response.get("ticket"));
+        String success = String.valueOf(response.get("success"));
+        if (ticket != null) {
+            jtextHentrada.setText(String.valueOf(ticket.get("hora_entrada")));
+            jtextHsalida.setText(String.valueOf(ticket.get("hora_salida")));
+            jtxtPlaca.setText(String.valueOf(ticket.get("vehiculo_placa")));
+            jtextMonto.setText("10.00");
+            
         }
         System.out.println("response " + response);
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -297,10 +311,12 @@ ClientService clientService = new ClientService();
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jtextHentrada;
     private javax.swing.JTextField jtextHsalida;
     private javax.swing.JTextField jtextId;
     private javax.swing.JTextField jtextMonto;
+    private javax.swing.JTextField jtxtPlaca;
     // End of variables declaration//GEN-END:variables
 }

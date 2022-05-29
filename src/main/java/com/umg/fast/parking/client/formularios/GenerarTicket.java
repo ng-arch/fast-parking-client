@@ -43,8 +43,6 @@ public class GenerarTicket extends javax.swing.JFrame {
         jtextPlaca = new javax.swing.JTextField();
         generarTicket = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setText("Usuario");
@@ -89,7 +87,7 @@ public class GenerarTicket extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(generarTicket)
                                 .addGap(13, 13, 13)))))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,7 +112,7 @@ public class GenerarTicket extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +144,7 @@ public class GenerarTicket extends javax.swing.JFrame {
         request.put("vehiculo_placa", placa);
         System.out.println("request registrat ticket "+request);
         JSONObject response = clientService.postRequest("http://localhost:5050/parking/controller/registrotkt", request);
-        JOptionPane.showMessageDialog(this, response.get("mensaje"));
+        JOptionPane.showMessageDialog(this, response.get("message"));
         
     }//GEN-LAST:event_generarTicketActionPerformed
 

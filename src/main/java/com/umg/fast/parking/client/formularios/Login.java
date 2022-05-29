@@ -38,8 +38,9 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtextUsuario = new javax.swing.JTextField();
-        jbuttonAceptar = new javax.swing.JButton();
+        jbRegistrar = new javax.swing.JButton();
         jtextPassword = new javax.swing.JPasswordField();
+        jbuttonAceptar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,10 +50,17 @@ public class Login extends javax.swing.JFrame {
 
         jtextUsuario.setToolTipText("");
 
-        jbuttonAceptar.setText("aceptar");
-        jbuttonAceptar.addActionListener(new java.awt.event.ActionListener() {
+        jbRegistrar.setText("registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbuttonAceptarActionPerformed(evt);
+                jbRegistrarActionPerformed(evt);
+            }
+        });
+
+        jbuttonAceptar1.setText("aceptar");
+        jbuttonAceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbuttonAceptar1ActionPerformed(evt);
             }
         });
 
@@ -62,18 +70,24 @@ public class Login extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbuttonAceptar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jtextPassword))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jtextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtextPassword))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtextUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbRegistrar)
+                        .addGap(70, 70, 70)))
                 .addContainerGap(44, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(236, Short.MAX_VALUE)
+                    .addComponent(jbuttonAceptar1)
+                    .addGap(34, 34, 34)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -86,20 +100,29 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtextPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addComponent(jbuttonAceptar)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(jbRegistrar)
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(122, Short.MAX_VALUE)
+                    .addComponent(jbuttonAceptar1)
+                    .addGap(13, 13, 13)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbuttonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAceptarActionPerformed
-        String usuario = jtextUsuario.getText();
-        String password = jtextPassword.getText();
-        Tools.setUsuario(usuario);
-        
-        JSONObject request = new JSONObject();
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        Registro registro=new Registro();
+        registro.setVisible(true);
+        registro.setLocationRelativeTo(this);
+    }//GEN-LAST:event_jbRegistrarActionPerformed
+
+    private void jbuttonAceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbuttonAceptar1ActionPerformed
+       JSONObject request = new JSONObject();
+       String usuario=jtextUsuario.getText();
+       String password=jtextUsuario.getText();
         request.put("usuario", usuario);
         request.put("password", password);
         
@@ -108,14 +131,14 @@ public class Login extends javax.swing.JFrame {
         String success=String.valueOf(response.get("success"));
         if("true".equals(success)){
         Menu abrir = new Menu();
+        abrir.setLocationRelativeTo(this);
         abrir.setVisible(true);
         this.setVisible(false);
             
 
             
-        }
-        System.out.println("response " + response);
-    }//GEN-LAST:event_jbuttonAceptarActionPerformed
+        } 
+    }//GEN-LAST:event_jbuttonAceptar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,7 +178,8 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton jbuttonAceptar;
+    private javax.swing.JButton jbRegistrar;
+    private javax.swing.JButton jbuttonAceptar1;
     private javax.swing.JPasswordField jtextPassword;
     private javax.swing.JTextField jtextUsuario;
     // End of variables declaration//GEN-END:variables
